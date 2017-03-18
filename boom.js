@@ -3,11 +3,10 @@
 */
 
 // Constructor for the Boom class
-function Boom(x = 0, y = 0, width = 10, height = 10, duration = 200, color = "#B20000"){
+function Boom(x = 0, y = 0, size = 20, duration = 200, color = "#B20000"){
 	this.x = x;
 	this.y = y;
-	this.width = width;
-	this.height = height;
+	this.size = size;
 
 	this.duration = duration; // Milliseconds (1000ms = 1s)
 	this.color = color;
@@ -55,12 +54,12 @@ Boom.prototype.render = function(ctx = null){
 Boom.prototype.createParticles = function(){
 	var amount = Math.random() * this.particleRange + this.particleMin; // Can be a floating
 	for(var i = 0; i < amount; i++){
-		var speed = 15;
+		var speed = Math.random() * 10 + 5; // 5 - 15
 		var angle = Math.round(Math.random() * 360);
-		var size = 20;
+		var size = this.size;
 		var decaying = 4; // %
 		var color = this.color;
-		var duration = 300; // ms
+		var duration = this.duration; // ms
 		var delay = Math.round(Math.random() * 500); // ms
 		this.particles.push(new Particle(this.x, this.y, speed, angle, size, decaying, color, duration, delay));
 	}
